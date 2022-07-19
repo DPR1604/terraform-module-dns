@@ -9,13 +9,13 @@ variable "zones" {
     data_records = map(object({
       name = string
       data = object({
-        service   = string
-        proto     = string
-        name      = string
-        priority  = number
-        weight    = number
-        port      = number
-        target    = string
+        service  = string
+        proto    = string
+        name     = string
+        priority = number
+        weight   = number
+        port     = number
+        target   = string
       })
       type     = string
       proxied  = bool
