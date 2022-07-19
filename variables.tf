@@ -1,4 +1,4 @@
-variable "zone" {
+variable "zones" {
   type = map(object({
     zone             = string
     dns              = string

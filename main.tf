@@ -29,7 +29,7 @@ data "cloudflare_zones" "zone" {
 resource "cloudflare_zone_settings_override" "zone-overrides" {
   for_each = var.zone
   zone_id  = lookup(data.cloudflare_zones.zone[each.value.zone].zones[0], "id")
-  lifecycle_changes {
+  lifecycle {
     ignore_changes = [
       # ignore chages to zone_id as it forces the zone to be recreated
       zone_id
