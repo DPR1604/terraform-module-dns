@@ -10,13 +10,13 @@ terraform {
 }
 
 resource "cloudflare_zone" "zone" {
-  for_each = var.zone
+  for_each = var.zones
   zone     = each.value.zone
   type     = each.value.dns
   plan     = each.value.plan
 }
 data "cloudflare_zones" "zone" {
-  for_each = var.zone
+  for_each = var.zones
   filter {
     name        = each.value.zone
     lookup_type = "exact"
@@ -27,7 +27,7 @@ data "cloudflare_zones" "zone" {
 }
 
 resource "cloudflare_zone_settings_override" "zone-overrides" {
-  for_each = var.zone
+  for_each = var.zones
   zone_id  = lookup(data.cloudflare_zones.zone[each.value.zone].zones[0], "id")
   lifecycle {
     ignore_changes = [
