@@ -62,7 +62,7 @@ resource "cloudflare_record" "records_value" {
   priority = each.value.dns_priority
   zone_id  = lookup(data.cloudflare_zones.zone[each.value.zone_key].zones[0], "id")
   depends_on = [
-    cloudflare_zone.redirect_zone,
+    cloudflare_zone.zone,
   ]
   value = each.value.dns_value == "SRV" ? null : each.value.dns_value
 }
@@ -83,7 +83,7 @@ resource "cloudflare_record" "records_data" {
   priority = each.value.dns_priority
   zone_id  = lookup(data.cloudflare_zones.zone[each.value.zone_key].zones[0], "id")
   depends_on = [
-    cloudflare_zone.redirect_zone,
+    cloudflare_zone.zone,
   ]
   data {
     service  = each.value.dns_data_service
