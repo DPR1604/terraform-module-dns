@@ -35,18 +35,3 @@ locals {
     ]
   ])
 }
-
-locals {
-  all_page_rules = flatten([
-    for zone_key, zone in var.zones : [
-      for page_rule_key, page_rule in zone.page_rules : {
-        zone_key              = zone_key
-        page_rule_key         = page_rule_key
-        page_rule_target      = page_rule.target
-        page_rule_forward_url = page_rule.forward_url
-        page_rule_status_code = page_rule.status_code
-        page_rule_priority    = page_rule.priority
-      }
-    ]
-  ])
-}
