@@ -4,16 +4,17 @@ terraform {
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 3.0"
+      version = "~> 4.0"
     }
   }
 }
 
 resource "cloudflare_zone" "zone" {
-  for_each = var.zones
-  zone     = each.value.zone
-  type     = each.value.dns
-  plan     = each.value.plan
+  for_each   = var.zones
+  account_id = each.value.account_id
+  zone       = each.value.zone
+  type       = each.value.dns
+  plan       = each.value.plan
 }
 data "cloudflare_zones" "zone" {
   for_each = var.zones
