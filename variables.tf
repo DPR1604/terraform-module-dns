@@ -1,5 +1,6 @@
 variable "zones" {
   type = map(object({
+    account_id       = string
     zone             = string
     dns              = string
     ssl              = string
